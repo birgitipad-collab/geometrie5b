@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rauminhalte – Klasse 5</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== DESIGN TOKENS ===== */
+    :root, [data-theme="light"] {
+      --color-bg: #f5f7ff;
+      --color-surface: #ffffff;
+      --color-surface-2: #eef1ff;
+      --color-surface-offset: #e3e8ff;
+      --color-divider: #d0d5f5;
+      --color-border: #c5caf0;
+      --color-text: #1a1d3a;
+      --color-text-muted: #555880;
+      --color-text-faint: #9a9dc0;
+      --color-text-inverse: #f9f9ff;
+      --color-primary: #4f46e5;
+      --color-primary-hover: #3730a3;
+      --color-primary-highlight: #e0e7ff;
+      --color-success: #059669;
+      --color-success-highlight: #d1fae5;
+      --color-warning: #d97706;
+      --color-warning-highlight: #fef3c7;
+      --color-error: #dc2626;
+      --color-error-highlight: #fee2e2;
+      --color-orange: #ea580c;
+      --color-teal: #0d9488;
+      --color-teal-highlight: #ccfbf1;
+      --color-purple: #7c3aed;
+      --color-purple-highlight: #ede9fe;
+      --shadow-sm: 0 1px 3px rgba(79,70,229,0.08);
+      --shadow-md: 0 4px 16px rgba(79,70,229,0.12);
+      --shadow-lg: 0 8px 32px rgba(79,70,229,0.16);
+      --radius-sm: 0.375rem;
+      --radius-md: 0.625rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.25rem;
+      --radius-full: 9999px;
+      --font-display: 'Nunito', sans-serif;
+      --font-body: 'Nunito Sans', sans-serif;
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3rem);
+      --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+      --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem;
+      --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem;
+      --space-16: 4rem; --space-20: 5rem;
+      --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-theme="dark"] {
+      --color-bg: #0f0f1a;
+      --color-surface: #16162a;
+      --color-surface-2: #1e1e35;
+      --color-surface-offset: #252540;
+      --color-divider: #2e2e50;
+      --color-border: #3a3a60;
+      --color-text: #e8e8f8;
+      --color-text-muted: #9090b8;
+      --color-text-faint: #5a5a80;
+      --color-text-inverse: #1a1d3a;
+      --color-primary: #818cf8;
+      --color-primary-hover: #a5b4fc;
+      --color-primary-highlight: #1e1b4b;
+      --color-success: #34d399;
+      --color-success-highlight: #064e3b;
+      --color-warning: #fbbf24;
+      --color-warning-highlight: #451a03;
+      --color-error: #f87171;
+      --color-error-highlight: #450a0a;
+      --color-orange: #fb923c;
+      --color-teal: #2dd4bf;
+      --color-teal-highlight: #042f2e;
+      --color-purple: #c084fc;
+      --color-purple-highlight: #2e1065;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) { --color-bg: #0f0f1a; --color-surface: #16162a; --color-surface-2: #1e1e35; --color-surface-offset: #252540; --color-divider: #2e2e50; --color-border: #3a3a60; --color-text: #e8e8f8; --color-text-muted: #9090b8; --color-text-faint: #5a5a80; --color-primary: #818cf8; --color-primary-hover: #a5b4fc; --color-primary-highlight: #1e1b4b; --color-success: #34d399; --color-success-highlight: #064e3b; --color-warning: #fbbf24; --color-teal: #2dd4bf; --color-teal-highlight: #042f2e; --color-purple: #c084fc; --color-purple-highlight: #2e1065; --shadow-sm: 0 1px 3px rgba(0,0,0,0.3); --shadow-md: 0 4px 16px rgba(0,0,0,0.4); --shadow-lg: 0 8px 32px rgba(0,0,0,0.5); }
+    }
+
+    /* ===== BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-body); font-size: var(--text-base); color: var(--color-text); background: var(--color-bg); min-height: 100dvh; line-height: 1.6; }
+    img, svg { display: block; max-width: 100%; }
+    button { cursor: pointer; border: none; background: none; font: inherit; color: inherit; }
+    h1,h2,h3,h4 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; }
+    p, li { text-wrap: pretty; max-width: 72ch; }
+    a { color: var(--color-primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ===== LAYOUT ===== */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-3) var(--space-6);
+      display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+    }
+    .header-logo {
+      display: flex; align-items: center; gap: var(--space-3);
+      font-family: var(--font-display); font-weight: 800; font-size: var(--text-lg);
+      color: var(--color-text);
+    }
+    .header-logo svg { color: var(--color-primary); }
+    .header-nav { display: flex; align-items: center; gap: var(--space-2); }
+    .nav-pill {
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm); font-weight: 600;
+      color: var(--color-text-muted);
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+    .nav-pill:hover { background: var(--color-surface-2); color: var(--color-text); }
+    .nav-pill.active { background: var(--color-primary-highlight); color: var(--color-primary); }
+    .theme-toggle {
+      width: 40px; height: 40px; border-radius: var(--radius-full);
+      display: flex; align-items: center; justify-content: center;
+      background: var(--color-surface-2);
+      color: var(--color-text-muted);
+      transition: all var(--transition);
+    }
+    .theme-toggle:hover { background: var(--color-surface-offset); color: var(--color-text); }
+    .progress-bar-wrap {
+      height: 4px; background: var(--color-surface-offset); position: relative;
+    }
+    .progress-bar-fill {
+      height: 100%; background: linear-gradient(90deg, var(--color-primary), var(--color-teal));
+      transition: width 0.5s ease;
+      width: 0%;
+    }
+
+    /* ===== PAGES ===== */
+    .page { display: none; animation: fadeIn 0.3s ease; }
+    .page.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: var(--space-16) var(--space-6);
+      max-width: 960px; margin: 0 auto;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      background: var(--color-primary-highlight); color: var(--color-primary);
+      padding: var(--space-2) var(--space-4); border-radius: var(--radius-full);
+      font-size: var(--text-sm); font-weight: 700; font-family: var(--font-display);
+      margin-bottom: var(--space-6);
+    }
+    .hero h1 { font-size: var(--text-2xl); font-weight: 800; margin-bottom: var(--space-4); }
+    .hero h1 span { color: var(--color-primary); }
+    .hero p { font-size: var(--text-lg); color: var(--color-text-muted); margin: 0 auto var(--space-8); }
+    .hero-cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px,100%), 1fr));
+      gap: var(--space-4); margin-bottom: var(--space-8);
+    }
+    .hero-card {
+      background: var(--color-surface);
+      border-radius: var(--radius-xl); padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--color-border);
+      text-align: left;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .hero-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .hero-card .card-icon {
+      width: 48px; height: 48px; border-radius: var(--radius-lg);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: var(--space-4);
+      font-size: 1.5rem;
+    }
+    .hero-card h3 { font-size: var(--text-base); font-weight: 700; margin-bottom: var(--space-1); }
+    .hero-card p { font-size: var(--text-sm); color: var(--color-text-muted); max-width: none; }
+    .hero-card .card-step {
+      font-size: var(--text-xs); font-weight: 700; font-family: var(--font-display);
+      color: var(--color-text-faint); text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: var(--space-2);
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      background: var(--color-primary); color: white;
+      padding: var(--space-3) var(--space-8); border-radius: var(--radius-full);
+      font-size: var(--text-base); font-weight: 700; font-family: var(--font-display);
+      transition: all var(--transition);
+      box-shadow: 0 4px 14px rgba(79,70,229,0.35);
+    }
+    .btn-primary:hover { background: var(--color-primary-hover); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(79,70,229,0.45); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      background: var(--color-surface); color: var(--color-text);
+      padding: var(--space-3) var(--space-6); border-radius: var(--radius-full);
+      font-size: var(--text-base); font-weight: 600; font-family: var(--font-display);
+      border: 1px solid var(--color-border);
+      transition: all var(--transition);
+    }
+    .btn-secondary:hover { background: var(--color-surface-2); }
+
+    /* ===== SECTION WRAPPER ===== */
+    .section-wrap { max-width: 960px; margin: 0 auto; padding: var(--space-12) var(--space-6); }
+    .section-header { margin-bottom: var(--space-8); }
+    .section-label {
+      font-size: var(--text-xs); font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--color-primary);
+      font-family: var(--font-display); margin-bottom: var(--space-2);
+    }
+    .section-header h2 { font-size: var(--text-xl); font-weight: 800; }
+    .section-header p { color: var(--color-text-muted); margin-top: var(--space-2); }
+
+    /* ===== INFO BOX ===== */
+    .info-box {
+      background: var(--color-surface);
+      border-radius: var(--radius-xl); padding: var(--space-6);
+      border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm); margin-bottom: var(--space-6);
+    }
+    .info-box.highlight { border-color: var(--color-primary); background: var(--color-primary-highlight); }
+    .info-box.success { border-color: var(--color-success); background: var(--color-success-highlight); }
+    .info-box.warning { border-color: var(--color-warning); background: var(--color-warning-highlight); }
+    .info-box.teal { border-color: var(--color-teal); background: var(--color-teal-highlight); }
+    .info-box.purple { border-color: var(--color-purple); background: var(--color-purple-highlight); }
+    .info-box h3 { font-size: var(--text-base); font-weight: 700; margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2); }
+    .info-box p, .info-box li { font-size: var(--text-sm); color: var(--color-text-muted); }
+    .info-box.highlight p, .info-box.highlight li { color: var(--color-primary); }
+    .info-box.success p, .info-box.success li { color: var(--color-success); }
+    .info-box.warning p, .info-box.warning li { color: var(--color-warning); }
+    .info-box ul { padding-left: var(--space-5); display: flex; flex-direction: column; gap: var(--space-1); }
+
+    /* ===== FORMULA BOX ===== */
+    .formula-display {
+      background: var(--color-surface);
+      border-radius: var(--radius-xl); padding: var(--space-8);
+      border: 2px solid var(--color-primary);
+      text-align: center; margin-bottom: var(--space-6);
+    }
+    .formula-display .formula-title { font-size: var(--text-sm); font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-4); }
+    .formula-display .formula-main { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 800; color: var(--color-primary); }
+    .formula-display .formula-sub { font-size: var(--text-sm); color: var(--color-text-muted); margin-top: var(--space-2); }
+
+    /* ===== 3D CUBE VISUALIZER ===== */
+    .cube-scene {
+      perspective: 600px; width: 200px; height: 200px;
+      margin: 0 auto var(--space-6); cursor: grab;
+    }
+    .cube-scene:active { cursor: grabbing; }
+    .cube {
+      width: 100%; height: 100%;
+      position: relative; transform-style: preserve-3d;
+      transform: rotateX(-20deg) rotateY(30deg);
+      transition: transform 0.05s linear;
+    }
+    .cube-face {
+      position: absolute; width: 100%; height: 100%;
+      border: 2px solid rgba(79,70,229,0.6);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: var(--text-sm); font-weight: 700;
+      color: var(--color-primary);
+    }
+    .face-front  { background: rgba(79,70,229,0.12); transform: translateZ(100px); }
+    .face-back   { background: rgba(79,70,229,0.08); transform: rotateY(180deg) translateZ(100px); }
+    .face-right  { background: rgba(79,70,229,0.10); transform: rotateY(90deg) translateZ(100px); }
+    .face-left   { background: rgba(79,70,229,0.08); transform: rotateY(-90deg) translateZ(100px); }
+    .face-top    { background: rgba(79,70,229,0.15); transform: rotateX(90deg) translateZ(100px); }
+    .face-bottom { background: rgba(79,70,229,0.05); transform: rotateX(-90deg) translateZ(100px); }
+
+    /* ===== CALCULATOR ===== */
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    @media (max-width: 600px) { .calc-grid { grid-template-columns: 1fr; } }
+    .calc-panel {
+      background: var(--color-surface);
+      border-radius: var(--radius-xl); padding: var(--space-6);
+      border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);
+    }
+    .calc-panel h3 { font-size: var(--text-base); font-weight: 700; margin-bottom: var(--space-4); display: flex; align-items: center; gap: var(--space-2); }
+    .form-group { margin-bottom: var(--space-4); }
+    .form-group label { display: block; font-size: var(--text-sm); font-weight: 600; color: var(--color-text-muted); margin-bottom: var(--space-1); }
+    .form-input {
+      width: 100%; padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md); border: 1px solid var(--color-border);
+      background: var(--color-surface-2); color: var(--color-text);
+      font: inherit; font-size: var(--text-base);
+      transition: all var(--transition);
+    }
+    .form-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(79,70,229,0.15); }
+    .calc-result {
+      margin-top: var(--space-4); padding: var(--space-4);
+      background: var(--color-primary-highlight); border-radius: var(--radius-lg);
+      border: 1px solid rgba(79,70,229,0.2);
+      font-family: var(--font-display); font-weight: 700;
+      color: var(--color-primary); text-align: center;
+      font-size: var(--text-lg); min-height: 60px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .btn-calc {
+      width: 100%; padding: var(--space-3);
+      background: var(--color-primary); color: white;
+      border-radius: var(--radius-md); font-weight: 700;
+      font-size: var(--text-sm); font-family: var(--font-display);
+      transition: all var(--transition); margin-top: var(--space-2);
+    }
+    .btn-calc:hover { background: var(--color-primary-hover); }
+
+    /* ===== QUIZ ===== */
+    .quiz-question {
+      background: var(--color-surface);
+      border-radius: var(--radius-xl); padding: var(--space-8);
+      border: 1px solid var(--color-border); box-shadow: var(--shadow-sm);
+      margin-bottom: var(--space-6);
+    }
+    .quiz-q-num { font-size: var(--text-xs); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-text-faint); margin-bottom: var(--space-3); }
+    .quiz-q-text { font-size: var(--text-lg); font-weight: 700; margin-bottom: var(--space-6); }
+    .quiz-options { display: flex; flex-direction: column; gap: var(--space-3); }
+    .quiz-option {
+      padding: var(--space-4) var(--space-5);
+      border-radius: var(--radius-lg); border: 2px solid var(--color-border);
+      background: var(--color-surface-2); cursor: pointer;
+      font-size: var(--text-base); font-weight: 600;
+      transition: all var(--transition); text-align: left;
+    }
+    .quiz-option:hover { border-color: var(--color-primary); background: var(--color-primary-highlight); color: var(--color-primary); }
+    .quiz-option.correct { border-color: var(--color-success); background: var(--color-success-highlight); color: var(--color-success); }
+    .quiz-option.wrong { border-color: var(--color-error); background: var(--color-error-highlight); color: var(--color-error); }
+    .quiz-option:disabled { cursor: default; }
+    .quiz-feedback {
+      margin-top: var(--space-4); padding: var(--space-4);
+      border-radius: var(--radius-md); font-size: var(--text-sm); font-weight: 600;
+      display: none;
+    }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct { background: var(--color-success-highlight); color: var(--color-success); border: 1px solid var(--color-success); }
+    .quiz-feedback.wrong { background: var(--color-error-highlight); color: var(--color-error); border: 1px solid var(--color-error); }
+    .quiz-score {
+      background: var(--color-surface);
+      border-radius: var(--radius-xl); padding: var(--space-8);
+      border: 2px solid var(--color-primary); box-shadow: var(--shadow-md);
+      text-align: center; display: none;
+    }
+    .quiz-score.show { display: block; }
+    .quiz-score .score-num { font-size: var(--text-2xl); font-weight: 800; color: var(--color-primary); }
+    .quiz-score p { color: var(--color-text-muted); margin: var(--space-2) auto; }
+
+    /* ===== TOOLS SECTION ===== */
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr)); gap: var(--space-6); }
+    .tool-card {
+      background: var(--color-surface); border-radius: var(--radius-xl);
+      padding: var(--space-6); border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm);
+    }
+    .tool-card-header { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-4); }
+    .tool-badge {
+      padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
+      font-size: var(--text-xs); font-weight: 700; font-family: var(--font-display);
+    }
+    .tool-steps { list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
+    .tool-step { display: flex; gap: var(--space-3); align-items: flex-start; }
+    .step-num {
+      width: 24px; height: 24px; border-radius: var(--radius-full);
+      background: var(--color-primary-highlight); color: var(--color-primary);
+      font-size: var(--text-xs); font-weight: 800; font-family: var(--font-display);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-text { font-size: var(--text-sm); color: var(--color-text-muted); }
+    .tool-link {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      margin-top: var(--space-5); padding: var(--space-3) var(--space-5);
+      border-radius: var(--radius-full); font-size: var(--text-sm); font-weight: 700;
+      font-family: var(--font-display); transition: all var(--transition);
+      text-decoration: none;
+    }
+    .tool-link.tinkercad { background: var(--color-warning-highlight); color: var(--color-warning); border: 1px solid rgba(217,119,6,0.3); }
+    .tool-link.tinkercad:hover { background: var(--color-warning); color: white; text-decoration: none; }
+    .tool-link.geogebra { background: var(--color-teal-highlight); color: var(--color-teal); border: 1px solid rgba(13,148,136,0.3); }
+    .tool-link.geogebra:hover { background: var(--color-teal); color: white; text-decoration: none; }
+
+    /* ===== AUFGABEN ===== */
+    .task-card {
+      background: var(--color-surface); border-radius: var(--radius-xl);
+      padding: var(--space-6); border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-sm); margin-bottom: var(--space-4);
+    }
+    .task-header { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
+    .task-num {
+      width: 32px; height: 32px; border-radius: var(--radius-full);
+      background: var(--color-primary); color: white;
+      font-size: var(--text-sm); font-weight: 800; font-family: var(--font-display);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .task-header h3 { font-size: var(--text-base); font-weight: 700; }
+    .task-body { font-size: var(--text-sm); color: var(--color-text-muted); }
+    .task-body p { margin-bottom: var(--space-2); }
+    .task-check {
+      margin-top: var(--space-4); padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md); border: 1px solid var(--color-border);
+      display: flex; align-items: center; gap: var(--space-3);
+    }
+    .task-check input[type="checkbox"] {
+      width: 20px; height: 20px; accent-color: var(--color-success);
+      flex-shrink: 0; cursor: pointer;
+    }
+    .task-check label { font-size: var(--text-sm); color: var(--color-text-muted); cursor: pointer; }
+    .chip {
+      display: inline-flex; align-items: center;
+      padding: var(--space-1) var(--space-3); border-radius: var(--radius-full);
+      font-size: var(--text-xs); font-weight: 700; font-family: var(--font-display);
+    }
+    .chip-tinkercad { background: var(--color-warning-highlight); color: var(--color-warning); }
+    .chip-geogebra { background: var(--color-teal-highlight); color: var(--color-teal); }
+    .chip-rechnen { background: var(--color-purple-highlight); color: var(--color-purple); }
+    .chip-basis { background: var(--color-primary-highlight); color: var(--color-primary); }
+
+    /* ===== RESPONSIVE NAV ===== */
+    @media (max-width: 640px) {
+      .header-nav .nav-pill span { display: none; }
+      .header { padding: var(--space-3) var(--space-4); }
+    }
+
+    /* ===== CUBE ANIMATION ===== */
+    @keyframes float { 0%,100%{transform:rotateX(-20deg) rotateY(30deg) translateY(0)} 50%{transform:rotateX(-20deg) rotateY(30deg) translateY(-10px)} }
+    .cube-animate { animation: float 3s ease-in-out infinite; }
+    .cube-dims {
+      display: flex; justify-content: center; gap: var(--space-4); flex-wrap: wrap;
+      margin-bottom: var(--space-4);
+    }
+    .cube-dim-label { font-size: var(--text-xs); font-weight: 700; color: var(--color-text-muted); font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.06em; }
+    .cube-dim-val { font-size: var(--text-lg); font-weight: 800; color: var(--color-primary); font-family: var(--font-display); }
+
+    /* ===== UNITS PILL ===== */
+    .units-row { display: flex; gap: var(--space-2); flex-wrap: wrap; margin-bottom: var(--space-4); }
+    .unit-pill {
+      padding: var(--space-2) var(--space-4); border-radius: var(--radius-full);
+      border: 2px solid var(--color-border); background: var(--color-surface-2);
+      font-size: var(--text-sm); font-weight: 700; font-family: var(--font-display);
+      color: var(--color-text-muted); cursor: pointer; transition: all var(--transition);
+    }
+    .unit-pill.active { border-color: var(--color-primary); background: var(--color-primary-highlight); color: var(--color-primary); }
+
+    /* ===== STEPS TIMELINE ===== */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .timeline-item { display: flex; gap: var(--space-4); padding-bottom: var(--space-6); position: relative; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item::before { content: ''; position: absolute; left: 15px; top: 32px; bottom: 0; width: 2px; background: var(--color-divider); }
+    .timeline-item:last-child::before { display: none; }
+    .timeline-icon {
+      width: 32px; height: 32px; border-radius: var(--radius-full);
+      background: var(--color-primary-highlight); color: var(--color-primary);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 1rem; z-index: 1;
+      border: 2px solid var(--color-surface);
+    }
+    .timeline-content h4 { font-size: var(--text-base); font-weight: 700; margin-bottom: var(--space-1); }
+    .timeline-content p { font-size: var(--text-sm); color: var(--color-text-muted); max-width: 60ch; }
+
+    /* ===== VERGLEICHS TABLE ===== */
+    .compare-table { width: 100%; border-collapse: collapse; margin-bottom: var(--space-6); }
+    .compare-table th { background: var(--color-primary-highlight); color: var(--color-primary); padding: var(--space-3) var(--space-4); font-size: var(--text-sm); font-weight: 700; text-align: left; }
+    .compare-table td { padding: var(--space-3) var(--space-4); font-size: var(--text-sm); border-bottom: 1px solid var(--color-divider); }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: var(--color-surface-2); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-logo">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-label="Rauminhalte Logo">
+      <rect x="4" y="12" width="16" height="16" rx="2" fill="currentColor" opacity="0.15"/>
+      <rect x="4" y="12" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+      <rect x="10" y="6" width="16" height="16" rx="2" fill="currentColor" opacity="0.08"/>
+      <rect x="10" y="6" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" stroke-dasharray="3 2"/>
+      <line x1="4" y1="12" x2="10" y2="6" stroke="currentColor" stroke-width="2"/>
+      <line x1="20" y1="12" x2="26" y2="6" stroke="currentColor" stroke-width="2"/>
+      <line x1="20" y1="28" x2="26" y2="22" stroke="currentColor" stroke-width="2"/>
+    </svg>
+    <span>Rauminhalte · Klasse 5</span>
+  </div>
+  <nav class="header-nav" role="navigation" aria-label="Kapitelnavigation">
+    <button class="nav-pill active" onclick="showPage('einfuehrung')" data-page="einfuehrung">
+      <span>📐 Einführung</span>
+    </button>
+    <button class="nav-pill" onclick="showPage('formeln')" data-page="formeln">
+      <span>📏 Formeln</span>
+    </button>
+    <button class="nav-pill" onclick="showPage('rechner')" data-page="rechner">
+      <span>🧮 Rechner</span>
+    </button>
+    <button class="nav-pill" onclick="showPage('tools')" data-page="tools">
+      <span>🛠️ Tools</span>
+    </button>
+    <button class="nav-pill" onclick="showPage('aufgaben')" data-page="aufgaben">
+      <span>✏️ Aufgaben</span>
+    </button>
+    <button class="nav-pill" onclick="showPage('quiz')" data-page="quiz">
+      <span>🎯 Quiz</span>
+    </button>
+    <button class="theme-toggle" data-theme-toggle aria-label="Dunkelmodus umschalten">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"/>
+        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+    </button>
+  </nav>
+</header>
+<div class="progress-bar-wrap">
+  <div class="progress-bar-fill" id="progressBar"></div>
+</div>
+
+<!-- ===== PAGE 1: EINFÜHRUNG ===== -->
+<div class="page active" id="page-einfuehrung">
+  <div class="hero">
+    <div class="hero-badge">📦 Mathematik · Klasse 5 · Geometrie</div>
+    <h1>Was ist ein <span>Rauminhalt</span>?</h1>
+    <p>Lerne, wie viel Platz ein Körper einnimmt – und berechne ihn mit echten 3D-Tools!</p>
+
+    <div class="hero-cards">
+      <div class="hero-card" onclick="showPage('formeln')">
+        <div class="card-step">Schritt 1</div>
+        <div class="card-icon" style="background:var(--color-primary-highlight)">📐</div>
+        <h3>Formeln lernen</h3>
+        <p>Würfel, Quader &amp; Zylinder</p>
+      </div>
+      <div class="hero-card" onclick="showPage('rechner')">
+        <div class="card-step">Schritt 2</div>
+        <div class="card-icon" style="background:var(--color-teal-highlight)">🧮</div>
+        <h3>Selbst berechnen</h3>
+        <p>Interaktiver Rauminhalt-Rechner</p>
+      </div>
+      <div class="hero-card" onclick="showPage('tools')">
+        <div class="card-step">Schritt 3</div>
+        <div class="card-icon" style="background:var(--color-warning-highlight)">🛠️</div>
+        <h3>TinkerCAD &amp; GeoGebra</h3>
+        <p>3D-Körper selbst bauen</p>
+      </div>
+      <div class="hero-card" onclick="showPage('quiz')">
+        <div class="card-step">Schritt 4</div>
+        <div class="card-icon" style="background:var(--color-purple-highlight)">🎯</div>
+        <h3>Quiz</h3>
+        <p>Teste dein Wissen!</p>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="showPage('formeln')">
+      Jetzt starten ➜
+    </button>
+  </div>
+
+  <div class="section-wrap" style="padding-top:0">
+    <div class="info-box highlight">
+      <h3>💡 Was ist Rauminhalt (Volumen)?</h3>
+      <p>Der <strong>Rauminhalt</strong> (auch <strong>Volumen</strong> genannt) gibt an, wie viel Platz ein Körper im Raum einnimmt. Stell dir vor: Wie viele kleine Würfel (1 cm × 1 cm × 1 cm) passen in eine Schachtel?</p>
+    </div>
+    <div class="info-box warning">
+      <h3>📏 Maßeinheiten</h3>
+      <ul>
+        <li><strong>cm³</strong> (Kubikzentimeter) – z.B. ein Zuckerwürfel</li>
+        <li><strong>dm³</strong> = <strong>Liter (l)</strong> – z.B. eine Milchpackung</li>
+        <li><strong>m³</strong> (Kubikmeter) – z.B. ein großer Karton</li>
+        <li>1 dm³ = 1 000 cm³ &nbsp;|&nbsp; 1 m³ = 1 000 000 cm³</li>
+      </ul>
+    </div>
+    <div class="info-box teal">
+      <h3>🌍 Rauminhalt im Alltag</h3>
+      <ul>
+        <li>Wie viel Wasser fasst ein Aquarium?</li>
+        <li>Wie viel Erde braucht ein Blumentopf?</li>
+        <li>Wie viel Luft ist in einem Zimmer?</li>
+        <li>Wie viel Eis passt in eine Eispackung?</li>
+      </ul>
+    </div>
+
+    <!-- Interactive Cube -->
+    <div style="text-align:center; margin:var(--space-8) 0">
+      <div class="section-label" style="margin-bottom:var(--space-4)">🎮 Interaktiver Würfel – Drehen mit der Maus!</div>
+      <div class="cube-dims" id="cubeDims">
+        <div><div class="cube-dim-label">Länge (a)</div><div class="cube-dim-val" id="dimA">4 cm</div></div>
+        <div><div class="cube-dim-label">Breite (b)</div><div class="cube-dim-val" id="dimB">4 cm</div></div>
+        <div><div class="cube-dim-label">Höhe (h)</div><div class="cube-dim-val" id="dimC">4 cm</div></div>
+        <div><div class="cube-dim-label">Volumen</div><div class="cube-dim-val" id="dimV">64 cm³</div></div>
+      </div>
+      <div class="cube-scene" id="cubeScene">
+        <div class="cube cube-animate" id="mainCube">
+          <div class="cube-face face-front">Vorne</div>
+          <div class="cube-face face-back">Hinten</div>
+          <div class="cube-face face-right">Rechts</div>
+          <div class="cube-face face-left">Links</div>
+          <div class="cube-face face-top">Oben</div>
+          <div class="cube-face face-bottom">Unten</div>
+        </div>
+      </div>
+      <p style="font-size:var(--text-xs);color:var(--color-text-faint);margin-top:var(--space-2)">Klicke &amp; ziehe, um den Würfel zu drehen</p>
+      <div style="margin-top:var(--space-4)">
+        <label style="font-size:var(--text-sm);font-weight:700;color:var(--color-text-muted)">Seitenlänge: <span id="sliderVal">4</span> cm</label><br>
+        <input type="range" min="1" max="8" value="4" id="cubeSlider"
+          style="width:200px;accent-color:var(--color-primary);margin-top:var(--space-2)">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 2: FORMELN ===== -->
+<div class="page" id="page-formeln">
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-label">📐 Kapitel 2</div>
+      <h2>Formeln für Rauminhalte</h2>
+      <p>Lerne die wichtigsten Formeln für Körper in der Klasse 5</p>
+    </div>
+
+    <!-- Würfel -->
+    <div class="info-box" style="margin-bottom:var(--space-4)">
+      <h3>📦 Würfel</h3>
+      <p style="margin-bottom:var(--space-3)">Ein Würfel hat <strong>6 gleiche quadratische Flächen</strong>. Alle Seiten sind gleich lang.</p>
+      <div class="formula-display" style="margin:var(--space-4) 0">
+        <div class="formula-title">Rauminhalt Würfel</div>
+        <div class="formula-main">V = a³ = a · a · a</div>
+        <div class="formula-sub">a = Seitenlänge</div>
+      </div>
+      <div class="info-box highlight" style="margin:0">
+        <p>📝 <strong>Beispiel:</strong> Würfel mit a = 3 cm<br>V = 3 · 3 · 3 = <strong>27 cm³</strong></p>
+      </div>
+    </div>
+
+    <!-- Quader -->
+    <div class="info-box" style="margin-bottom:var(--space-4)">
+      <h3>📦 Quader</h3>
+      <p style="margin-bottom:var(--space-3)">Ein Quader hat <strong>3 Paare paralleler Rechteckflächen</strong>. Länge, Breite und Höhe können verschieden sein.</p>
+      <div class="formula-display" style="margin:var(--space-4) 0">
+        <div class="formula-title">Rauminhalt Quader</div>
+        <div class="formula-main">V = l · b · h</div>
+        <div class="formula-sub">l = Länge, b = Breite, h = Höhe</div>
+      </div>
+      <div class="info-box success" style="margin:0">
+        <p>📝 <strong>Beispiel:</strong> Schuhkarton: l = 30 cm, b = 15 cm, h = 12 cm<br>V = 30 · 15 · 12 = <strong>5 400 cm³</strong></p>
+      </div>
+    </div>
+
+    <!-- Zylinder -->
+    <div class="info-box" style="margin-bottom:var(--space-4)">
+      <h3>🥫 Zylinder</h3>
+      <p style="margin-bottom:var(--space-3)">Ein Zylinder hat <strong>zwei kreisförmige Grundflächen</strong> und eine gebogene Mantelfläche.</p>
+      <div class="formula-display" style="margin:var(--space-4) 0">
+        <div class="formula-title">Rauminhalt Zylinder</div>
+        <div class="formula-main">V = π · r² · h</div>
+        <div class="formula-sub">r = Radius, h = Höhe, π ≈ 3,14159</div>
+      </div>
+      <div class="info-box teal" style="margin:0">
+        <p>📝 <strong>Beispiel:</strong> Konservendose: r = 4 cm, h = 10 cm<br>V = 3,14 · 4² · 10 = 3,14 · 16 · 10 = <strong>502,4 cm³</strong></p>
+      </div>
+    </div>
+
+    <!-- Vergleichstabelle -->
+    <div class="section-header" style="margin-top:var(--space-10)">
+      <div class="section-label">📊 Übersicht</div>
+      <h2>Körper im Vergleich</h2>
+    </div>
+    <div class="info-box" style="overflow-x:auto">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Körper</th>
+            <th>Formel</th>
+            <th>Maße</th>
+            <th>Volumen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>🎲 Würfel</td><td>V = a³</td><td>a = 5 cm</td><td>125 cm³</td></tr>
+          <tr><td>📦 Quader</td><td>V = l·b·h</td><td>10×5×4 cm</td><td>200 cm³</td></tr>
+          <tr><td>🥫 Zylinder</td><td>V = π·r²·h</td><td>r=3 cm, h=10 cm</td><td>≈ 282,7 cm³</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display:flex; gap:var(--space-4); flex-wrap:wrap; margin-top:var(--space-8)">
+      <button class="btn-primary" onclick="showPage('rechner')">Weiter zum Rechner ➜</button>
+      <button class="btn-secondary" onclick="showPage('einfuehrung')">← Zurück</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 3: RECHNER ===== -->
+<div class="page" id="page-rechner">
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-label">🧮 Kapitel 3</div>
+      <h2>Interaktiver Rauminhalt-Rechner</h2>
+      <p>Gib die Maße ein und lass dir den Rauminhalt berechnen</p>
+    </div>
+
+    <div class="units-row">
+      <button class="unit-pill active" onclick="setUnit('cm')">cm / cm³</button>
+      <button class="unit-pill" onclick="setUnit('dm')">dm / dm³</button>
+      <button class="unit-pill" onclick="setUnit('m')">m / m³</button>
+    </div>
+
+    <div class="calc-grid">
+      <!-- Würfel -->
+      <div class="calc-panel">
+        <h3>🎲 Würfel</h3>
+        <div class="form-group">
+          <label for="wuerfel-a">Seitenlänge a (<span class="unit-label">cm</span>)</label>
+          <input type="number" id="wuerfel-a" class="form-input" placeholder="z.B. 5" min="0" step="0.1">
+        </div>
+        <button class="btn-calc" onclick="calcWuerfel()">Berechnen</button>
+        <div class="calc-result" id="result-wuerfel">
+          Ergebnis erscheint hier
+        </div>
+        <div style="margin-top:var(--space-3);font-size:var(--text-xs);color:var(--color-text-faint)">Formel: V = a³</div>
+      </div>
+
+      <!-- Quader -->
+      <div class="calc-panel">
+        <h3>📦 Quader</h3>
+        <div class="form-group">
+          <label for="quader-l">Länge l (<span class="unit-label">cm</span>)</label>
+          <input type="number" id="quader-l" class="form-input" placeholder="z.B. 10" min="0" step="0.1">
+        </div>
+        <div class="form-group">
+          <label for="quader-b">Breite b (<span class="unit-label">cm</span>)</label>
+          <input type="number" id="quader-b" class="form-input" placeholder="z.B. 5" min="0" step="0.1">
+        </div>
+        <div class="form-group">
+          <label for="quader-h">Höhe h (<span class="unit-label">cm</span>)</label>
+          <input type="number" id="quader-h" class="form-input" placeholder="z.B. 3" min="0" step="0.1">
+        </div>
+        <button class="btn-calc" onclick="calcQuader()">Berechnen</button>
+        <div class="calc-result" id="result-quader">
+          Ergebnis erscheint hier
+        </div>
+        <div style="margin-top:var(--space-3);font-size:var(--text-xs);color:var(--color-text-faint)">Formel: V = l · b · h</div>
+      </div>
+
+      <!-- Zylinder -->
+      <div class="calc-panel">
+        <h3>🥫 Zylinder</h3>
+        <div class="form-group">
+          <label for="zyl-r">Radius r (<span class="unit-label">cm</span>)</label>
+          <input type="number" id="zyl-r" class="form-input" placeholder="z.B. 4" min="0" step="0.1">
+        </div>
+        <div class="form-group">
+          <label for="zyl-h">Höhe h (<span class="unit-label">cm</span>)</label>
+          <input type="number" id="zyl-h" class="form-input" placeholder="z.B. 10" min="0" step="0.1">
+        </div>
+        <button class="btn-calc" onclick="calcZylinder()">Berechnen</button>
+        <div class="calc-result" id="result-zylinder">
+          Ergebnis erscheint hier
+        </div>
+        <div style="margin-top:var(--space-3);font-size:var(--text-xs);color:var(--color-text-faint)">Formel: V = π · r² · h</div>
+      </div>
+
+      <!-- Umrechner -->
+      <div class="calc-panel">
+        <h3>🔄 Einheiten umrechnen</h3>
+        <div class="form-group">
+          <label for="conv-val">Wert</label>
+          <input type="number" id="conv-val" class="form-input" placeholder="z.B. 1000" min="0" step="any">
+        </div>
+        <div class="form-group">
+          <label for="conv-from">Von</label>
+          <select id="conv-from" class="form-input">
+            <option value="cm3">cm³</option>
+            <option value="dm3">dm³ = Liter</option>
+            <option value="m3">m³</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="conv-to">Nach</label>
+          <select id="conv-to" class="form-input">
+            <option value="dm3">dm³ = Liter</option>
+            <option value="cm3">cm³</option>
+            <option value="m3">m³</option>
+          </select>
+        </div>
+        <button class="btn-calc" onclick="calcConvert()">Umrechnen</button>
+        <div class="calc-result" id="result-conv">
+          Ergebnis erscheint hier
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:var(--space-4); flex-wrap:wrap; margin-top:var(--space-8)">
+      <button class="btn-primary" onclick="showPage('tools')">Weiter zu den Tools ➜</button>
+      <button class="btn-secondary" onclick="showPage('formeln')">← Zurück</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 4: TOOLS ===== -->
+<div class="page" id="page-tools">
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-label">🛠️ Kapitel 4</div>
+      <h2>3D-Tools für Rauminhalte</h2>
+      <p>Baue und erkunde 3D-Körper mit TinkerCAD und GeoGebra</p>
+    </div>
+
+    <div class="tools-grid">
+      <!-- TinkerCAD -->
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span style="font-size:2rem">🟠</span>
+          <div>
+            <div style="font-size:var(--text-lg);font-weight:800;font-family:var(--font-display)">TinkerCAD</div>
+            <span class="tool-badge" style="background:var(--color-warning-highlight);color:var(--color-warning)">3D-Design</span>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-4)">
+          Mit TinkerCAD kannst du eigene 3D-Körper bauen, kombinieren und die Maße direkt eingeben. TinkerCAD berechnet das Volumen automatisch!
+        </p>
+        <ul class="tool-steps">
+          <li class="tool-step">
+            <div class="step-num">1</div>
+            <div class="step-text">Öffne <strong>tinkercad.com</strong> und melde dich an (oder Gastmodus)</div>
+          </li>
+          <li class="tool-step">
+            <div class="step-num">2</div>
+            <div class="step-text">Klicke auf <strong>„Neues Design"</strong> → wähle einen Quader oder Würfel aus der rechten Symbolleiste</div>
+          </li>
+          <li class="tool-step">
+            <div class="step-num">3</div>
+            <div class="step-text">Klicke auf den Körper und ändere <strong>Länge, Breite, Höhe</strong> in der Maßeingabe</div>
+          </li>
+          <li class="tool-step">
+            <div class="step-num">4</div>
+            <div class="step-text">Berechne das Volumen mit der Formel und vergleiche mit deinem Modell</div>
+          </li>
+          <li class="tool-step">
+            <div class="step-num">5</div>
+            <div class="step-text">Erstelle einen <strong>Hohlkörper</strong>: Platziere einen kleineren Körper als „Loch"</div>
+          </li>
+        </ul>
+        <div class="info-box warning" style="margin-top:var(--space-4)">
+          <h3>🎯 Aufgabe in TinkerCAD</h3>
+          <p>Baue einen Quader mit l=8 cm, b=5 cm, h=3 cm. Berechne zuerst das Volumen, dann prüfe es in TinkerCAD!</p>
+        </div>
+        <a href="https://www.tinkercad.com/learn/designs" class="tool-link tinkercad" target="_blank" rel="noopener noreferrer">
+          🟠 TinkerCAD öffnen ↗
+        </a>
+      </div>
+
+      <!-- GeoGebra -->
+      <div class="tool-card">
+        <div class="tool-card-header">
+          <span style="font-size:2rem">🟢</span>
+          <div>
+            <div style="font-size:var(--text-lg);font-weight:800;font-family:var(--font-display)">GeoGebra 3D</div>
+            <span class="tool-badge" style="background:var(--color-teal-highlight);color:var(--color-teal)">3D-Rechner</span>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-4)">
+          Der GeoGebra 3D-Rechner zeigt dir mathematische Körper und berechnet Volumen und Oberfläche direkt. Perfekt zum Erkunden und Verstehen!
+        </p>
+        <ul class="tool-steps">
+          <li class="tool-step">
+            <div class="step-num">1</div>
+            <div class="step-text">Öffne <strong>geogebra.org/3d</strong> – kein Konto nötig!</div>
+          </li>
+          <li class="tool-step">
+            <div class="step-num">2</div>
+            <div class="step-text">Tippe in die Eingabezeile: <code style="background:var(--color-surface-2);padding:2px 6px;border-radius:4px;font-size:0.85em">Quader((0,0,0),(4,3,2))</code></div>
+          </li>
+          <li class="tool-step">
+            <div class="step-num">3</div>
+            <div class="step-text">GeoGebra zeigt das <strong>Volumen und die Oberfläche</strong> automatisch an</div>
+          </li>
+          <li class="tool-step">
+            <div class="step-num">4</div>
+            <div class="step-text">Drehe den Körper mit der Maus und erkunde alle Seiten</div>
+          </li>
+          <li class="tool-step">
+            <div class="step-num">5</div>
+            <div class="step-text">Ändere die Koordinaten und beobachte, wie sich das Volumen ändert</div>
+          </li>
+        </ul>
+        <div class="info-box teal" style="margin-top:var(--space-4)">
+          <h3>💡 GeoGebra Befehle</h3>
+          <ul>
+            <li><code style="font-size:0.9em">Quader((0,0,0),(3,3,3))</code> → Würfel</li>
+            <li><code style="font-size:0.9em">Zylinder((0,0,0),(0,0,5),3)</code> → Zylinder</li>
+            <li><code style="font-size:0.9em">Volumen(Körper)</code> → Volumen berechnen</li>
+          </ul>
+        </div>
+        <a href="https://www.geogebra.org/3d" class="tool-link geogebra" target="_blank" rel="noopener noreferrer">
+          🟢 GeoGebra 3D öffnen ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- Unterrichtsstunden-Ablauf -->
+    <div class="section-header" style="margin-top:var(--space-10)">
+      <div class="section-label">📋 Stundenverlauf</div>
+      <h2>Ablauf der Stunde</h2>
+    </div>
+    <div class="info-box">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-icon">📖</div>
+          <div class="timeline-content">
+            <h4>Einstieg (5 min)</h4>
+            <p>Einstiegsfrage: „Wie viele 1-cm-Würfel passen in diese Schachtel?" – Schüler schätzen, dann rechnen.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon">📐</div>
+          <div class="timeline-content">
+            <h4>Erarbeitung (15 min)</h4>
+            <p>Formeln für Würfel und Quader gemeinsam erarbeiten. Interaktiver Würfel auf der Tafel/Beamer.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon">🧮</div>
+          <div class="timeline-content">
+            <h4>Übung (10 min)</h4>
+            <p>Schüler benutzen den interaktiven Rechner. 3 Aufgaben zur Übung.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon">🛠️</div>
+          <div class="timeline-content">
+            <h4>TinkerCAD / GeoGebra (20 min)</h4>
+            <p>Schüler bauen Körper in TinkerCAD oder GeoGebra, messen und berechnen. Partnerarbeit empfohlen!</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon">🎯</div>
+          <div class="timeline-content">
+            <h4>Sicherung &amp; Quiz (10 min)</h4>
+            <p>Quiz gemeinsam lösen. Besprechung der schwierigen Fragen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:var(--space-4); flex-wrap:wrap; margin-top:var(--space-8)">
+      <button class="btn-primary" onclick="showPage('aufgaben')">Weiter zu den Aufgaben ➜</button>
+      <button class="btn-secondary" onclick="showPage('rechner')">← Zurück</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 5: AUFGABEN ===== -->
+<div class="page" id="page-aufgaben">
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-label">✏️ Kapitel 5</div>
+      <h2>Aufgaben &amp; Projekte</h2>
+      <p>Löse die Aufgaben und hake sie ab wenn du fertig bist!</p>
+    </div>
+
+    <div class="task-card">
+      <div class="task-header">
+        <div class="task-num">1</div>
+        <h3>Berechne den Rauminhalt</h3>
+        <span class="chip chip-rechnen">🔢 Rechnen</span>
+      </div>
+      <div class="task-body">
+        <p>Berechne den Rauminhalt der folgenden Körper:</p>
+        <ul style="padding-left:1.2rem;margin:var(--space-3) 0;display:flex;flex-direction:column;gap:var(--space-2)">
+          <li><strong>a)</strong> Würfel mit a = 6 cm &nbsp;&nbsp; <em style="color:var(--color-text-faint)">(Lösung: 216 cm³)</em></li>
+          <li><strong>b)</strong> Quader: l = 12 cm, b = 8 cm, h = 5 cm &nbsp;&nbsp; <em style="color:var(--color-text-faint)">(Lösung: 480 cm³)</em></li>
+          <li><strong>c)</strong> Quader: l = 20 cm, b = 10 cm, h = 4 cm &nbsp;&nbsp; <em style="color:var(--color-text-faint)">(Lösung: 800 cm³)</em></li>
+          <li><strong>d)</strong> Zylinder: r = 5 cm, h = 8 cm &nbsp;&nbsp; <em style="color:var(--color-text-faint)">(Lösung: ≈ 628,3 cm³)</em></li>
+        </ul>
+        <p style="margin-top:var(--space-2)">Nutze den <button onclick="showPage('rechner')" style="color:var(--color-primary);font-weight:700;background:none;border:none;cursor:pointer;font:inherit;font-size:inherit">Rauminhalt-Rechner</button> zum Überprüfen!</p>
+      </div>
+      <div class="task-check">
+        <input type="checkbox" id="task1" onchange="updateProgress()">
+        <label for="task1">Aufgabe abgeschlossen ✓</label>
+      </div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-header">
+        <div class="task-num">2</div>
+        <h3>TinkerCAD – Mein Zimmer</h3>
+        <span class="chip chip-tinkercad">🟠 TinkerCAD</span>
+      </div>
+      <div class="task-body">
+        <p><strong>Aufgabe:</strong> Baue in TinkerCAD ein Modell eines Zimmers (als Quader).</p>
+        <ul style="padding-left:1.2rem;margin:var(--space-3) 0;display:flex;flex-direction:column;gap:var(--space-2)">
+          <li>Miss dein eigenes Zimmer (oder schätze): Länge, Breite, Höhe</li>
+          <li>Baue den Quader in TinkerCAD mit diesen Maßen</li>
+          <li>Berechne: Wie viele Liter Luft sind in deinem Zimmer?</li>
+          <li><em>Hinweis: 1 dm³ = 1 Liter, 1 m³ = 1000 Liter</em></li>
+        </ul>
+      </div>
+      <div class="task-check">
+        <input type="checkbox" id="task2" onchange="updateProgress()">
+        <label for="task2">Aufgabe abgeschlossen ✓</label>
+      </div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-header">
+        <div class="task-num">3</div>
+        <h3>GeoGebra – Volumenvergleich</h3>
+        <span class="chip chip-geogebra">🟢 GeoGebra</span>
+      </div>
+      <div class="task-body">
+        <p><strong>Aufgabe:</strong> Welcher Körper hat das größere Volumen?</p>
+        <ul style="padding-left:1.2rem;margin:var(--space-3) 0;display:flex;flex-direction:column;gap:var(--space-2)">
+          <li>Zeichne in GeoGebra 3D: Würfel mit a = 5 cm</li>
+          <li>Zeichne auch: Quader mit l = 8, b = 4, h = 3 cm</li>
+          <li>Lasse GeoGebra das Volumen anzeigen (Rechtsklick → Info)</li>
+          <li>Welcher ist größer? Wie viel cm³ ist der Unterschied?</li>
+        </ul>
+      </div>
+      <div class="task-check">
+        <input type="checkbox" id="task3" onchange="updateProgress()">
+        <label for="task3">Aufgabe abgeschlossen ✓</label>
+      </div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-header">
+        <div class="task-num">4</div>
+        <h3>Sachaufgabe – Aquarium</h3>
+        <span class="chip chip-rechnen">🔢 Rechnen</span>
+      </div>
+      <div class="task-body">
+        <p>Ein Aquarium hat folgende Maße: Länge 80 cm, Breite 35 cm, Höhe 40 cm.</p>
+        <ul style="padding-left:1.2rem;margin:var(--space-3) 0;display:flex;flex-direction:column;gap:var(--space-2)">
+          <li><strong>a)</strong> Wie viel cm³ fasst das Aquarium?</li>
+          <li><strong>b)</strong> Wie viel Liter Wasser passt hinein? (1 l = 1 dm³)</li>
+          <li><strong>c)</strong> Das Aquarium wird nur zu ¾ gefüllt. Wie viel Liter sind das?</li>
+          <li><em style="color:var(--color-text-faint)">(Lösungen: 112 000 cm³ → 112 l → 84 l)</em></li>
+        </ul>
+      </div>
+      <div class="task-check">
+        <input type="checkbox" id="task4" onchange="updateProgress()">
+        <label for="task4">Aufgabe abgeschlossen ✓</label>
+      </div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-header">
+        <div class="task-num">5</div>
+        <h3>Kreativ-Aufgabe: Schuhkarton Design</h3>
+        <span class="chip chip-tinkercad">🟠 TinkerCAD</span>
+        <span class="chip chip-basis" style="margin-left:var(--space-1)">⭐ Bonus</span>
+      </div>
+      <div class="task-body">
+        <p><strong>Partneraufgabe:</strong> Entwerft einen Schuhkarton für einen Sportschuh Größe 37.</p>
+        <ul style="padding-left:1.2rem;margin:var(--space-3) 0;display:flex;flex-direction:column;gap:var(--space-2)">
+          <li>Schätzt zuerst die Maße (messen erlaubt!)</li>
+          <li>Baut den Karton in TinkerCAD – mit Deckel als separatem Körper</li>
+          <li>Berechnet das Volumen des Kartons</li>
+          <li>Berechnet: Wie viele Schuhkartons passen in 1 m³?</li>
+        </ul>
+      </div>
+      <div class="task-check">
+        <input type="checkbox" id="task5" onchange="updateProgress()">
+        <label for="task5">Aufgabe abgeschlossen ✓</label>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:var(--space-4); flex-wrap:wrap; margin-top:var(--space-8)">
+      <button class="btn-primary" onclick="showPage('quiz')">Weiter zum Quiz ➜</button>
+      <button class="btn-secondary" onclick="showPage('tools')">← Zurück</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 6: QUIZ ===== -->
+<div class="page" id="page-quiz">
+  <div class="section-wrap">
+    <div class="section-header">
+      <div class="section-label">🎯 Kapitel 6</div>
+      <h2>Wissens-Quiz</h2>
+      <p>Teste dein Wissen über Rauminhalte – 8 Fragen!</p>
+    </div>
+
+    <div id="quiz-container">
+      <!-- Q1 -->
+      <div class="quiz-question" id="q1">
+        <div class="quiz-q-num">Frage 1 von 8</div>
+        <div class="quiz-q-text">Wie lautet die Formel für den Rauminhalt eines Würfels mit Seitenlänge <em>a</em>?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answer(this,'q1','wrong')">V = a + a + a</button>
+          <button class="quiz-option" onclick="answer(this,'q1','correct')">V = a · a · a</button>
+          <button class="quiz-option" onclick="answer(this,'q1','wrong')">V = 6 · a²</button>
+          <button class="quiz-option" onclick="answer(this,'q1','wrong')">V = a²</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q1"></div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="quiz-question" id="q2">
+        <div class="quiz-q-num">Frage 2 von 8</div>
+        <div class="quiz-q-text">Ein Quader hat l = 5 cm, b = 4 cm, h = 3 cm. Wie groß ist sein Volumen?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answer(this,'q2','wrong')">24 cm³</button>
+          <button class="quiz-option" onclick="answer(this,'q2','wrong')">48 cm³</button>
+          <button class="quiz-option" onclick="answer(this,'q2','correct')">60 cm³</button>
+          <button class="quiz-option" onclick="answer(this,'q2','wrong')">20 cm³</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q2"></div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="quiz-question" id="q3">
+        <div class="quiz-q-num">Frage 3 von 8</div>
+        <div class="quiz-q-text">Wie viele cm³ sind 1 dm³?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answer(this,'q3','wrong')">10 cm³</button>
+          <button class="quiz-option" onclick="answer(this,'q3','wrong')">100 cm³</button>
+          <button class="quiz-option" onclick="answer(this,'q3','correct')">1 000 cm³</button>
+          <button class="quiz-option" onclick="answer(this,'q3','wrong')">10 000 cm³</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q3"></div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="quiz-question" id="q4">
+        <div class="quiz-q-num">Frage 4 von 8</div>
+        <div class="quiz-q-text">Welche Einheit wird für Volumen verwendet?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answer(this,'q4','wrong')">cm²</button>
+          <button class="quiz-option" onclick="answer(this,'q4','correct')">cm³</button>
+          <button class="quiz-option" onclick="answer(this,'q4','wrong')">cm</button>
+          <button class="quiz-option" onclick="answer(this,'q4','wrong')">m²</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q4"></div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="quiz-question" id="q5">
+        <div class="quiz-q-num">Frage 5 von 8</div>
+        <div class="quiz-q-text">Ein Würfel hat das Volumen 125 cm³. Wie lang ist eine Seite?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answer(this,'q5','wrong')">10 cm</button>
+          <button class="quiz-option" onclick="answer(this,'q5','correct')">5 cm</button>
+          <button class="quiz-option" onclick="answer(this,'q5','wrong')">25 cm</button>
+          <button class="quiz-option" onclick="answer(this,'q5','wrong')">3 cm</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q5"></div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="quiz-question" id="q6">
+        <div class="quiz-q-num">Frage 6 von 8</div>
+        <div class="quiz-q-text">Welche Formel wird für den Rauminhalt eines Zylinders verwendet?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answer(this,'q6','wrong')">V = r · h</button>
+          <button class="quiz-option" onclick="answer(this,'q6','wrong')">V = 2 · π · r · h</button>
+          <button class="quiz-option" onclick="answer(this,'q6','correct')">V = π · r² · h</button>
+          <button class="quiz-option" onclick="answer(this,'q6','wrong')">V = π · r · h²</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q6"></div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="quiz-question" id="q7">
+        <div class="quiz-q-num">Frage 7 von 8</div>
+        <div class="quiz-q-text">Eine Milchpackung fasst 1 Liter. Wie viel cm³ ist das?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answer(this,'q7','wrong')">100 cm³</button>
+          <button class="quiz-option" onclick="answer(this,'q7','correct')">1 000 cm³</button>
+          <button class="quiz-option" onclick="answer(this,'q7','wrong')">10 000 cm³</button>
+          <button class="quiz-option" onclick="answer(this,'q7','wrong')">500 cm³</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q7"></div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="quiz-question" id="q8">
+        <div class="quiz-q-num">Frage 8 von 8</div>
+        <div class="quiz-q-text">Was gibt der Rauminhalt eines Körpers an?</div>
+        <div class="quiz-options">
+          <button class="quiz-option" onclick="answer(this,'q8','wrong')">Wie schwer er ist</button>
+          <button class="quiz-option" onclick="answer(this,'q8','wrong')">Wie groß seine Oberfläche ist</button>
+          <button class="quiz-option" onclick="answer(this,'q8','correct')">Wie viel Platz er im Raum einnimmt</button>
+          <button class="quiz-option" onclick="answer(this,'q8','wrong')">Wie viele Seiten er hat</button>
+        </div>
+        <div class="quiz-feedback" id="fb-q8"></div>
+      </div>
+    </div>
+
+    <!-- Score -->
+    <div class="quiz-score" id="quiz-score">
+      <div style="font-size:3rem;margin-bottom:var(--space-4)" id="score-emoji">🎉</div>
+      <div class="score-num" id="score-num">0/8</div>
+      <p id="score-msg">Gut gemacht!</p>
+      <button class="btn-primary" onclick="resetQuiz()" style="margin-top:var(--space-6)">Quiz wiederholen 🔄</button>
+    </div>
+
+    <div style="display:flex; gap:var(--space-4); flex-wrap:wrap; margin-top:var(--space-8)">
+      <button class="btn-secondary" onclick="showPage('aufgaben')">← Zurück zu Aufgaben</button>
+      <button class="btn-secondary" onclick="showPage('einfuehrung')">🏠 Zurück zum Start</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== THEME TOGGLE =====
+(function(){
+  const t = document.querySelector('[data-theme-toggle]');
+  const r = document.documentElement;
+  let d = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  r.setAttribute('data-theme', d);
+  if(t) t.addEventListener('click', () => {
+    d = d === 'dark' ? 'light' : 'dark';
+    r.setAttribute('data-theme', d);
+    t.innerHTML = d === 'dark'
+      ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  });
+})();
+
+// ===== PAGE NAVIGATION =====
+const pages = ['einfuehrung','formeln','rechner','tools','aufgaben','quiz'];
+const pageProgress = {einfuehrung:5, formeln:25, rechner:45, tools:65, aufgaben:80, quiz:100};
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-pill').forEach(b => {
+    b.classList.toggle('active', b.dataset.page === id);
+  });
+  document.getElementById('progressBar').style.width = (pageProgress[id] || 0) + '%';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ===== 3D CUBE DRAG =====
+const cubeEl = document.getElementById('mainCube');
+const scene = document.getElementById('cubeScene');
+let isDragging = false, lastX = 0, lastY = 0, rotX = -20, rotY = 30;
+
+scene.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; lastY = e.clientY; cubeEl.style.animation = 'none'; });
+window.addEventListener('mouseup', () => { isDragging = false; });
+window.addEventListener('mousemove', e => {
+  if(!isDragging) return;
+  rotY += (e.clientX - lastX) * 0.5;
+  rotX -= (e.clientY - lastY) * 0.5;
+  lastX = e.clientX; lastY = e.clientY;
+  cubeEl.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+});
+scene.addEventListener('touchstart', e => { isDragging=true; lastX=e.touches[0].clientX; lastY=e.touches[0].clientY; cubeEl.style.animation='none'; });
+window.addEventListener('touchend', () => isDragging=false);
+window.addEventListener('touchmove', e => {
+  if(!isDragging) return;
+  rotY += (e.touches[0].clientX - lastX) * 0.5;
+  rotX -= (e.touches[0].clientY - lastY) * 0.5;
+  lastX = e.touches[0].clientX; lastY = e.touches[0].clientY;
+  cubeEl.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+});
+
+// ===== CUBE SLIDER =====
+const slider = document.getElementById('cubeSlider');
+slider.addEventListener('input', function() {
+  const s = parseInt(this.value);
+  document.getElementById('sliderVal').textContent = s;
+  document.getElementById('dimA').textContent = s + ' cm';
+  document.getElementById('dimB').textContent = s + ' cm';
+  document.getElementById('dimC').textContent = s + ' cm';
+  document.getElementById('dimV').textContent = (s*s*s) + ' cm³';
+  const px = 50 + s * 12;
+  cubeEl.parentElement.style.width = px + 'px';
+  cubeEl.parentElement.style.height = px + 'px';
+  document.querySelectorAll('.cube-face').forEach(f => {
+    f.style.width = px + 'px';
+    f.style.height = px + 'px';
+  });
+  const tz = px / 2;
+  document.querySelector('.face-front').style.transform = `translateZ(${tz}px)`;
+  document.querySelector('.face-back').style.transform = `rotateY(180deg) translateZ(${tz}px)`;
+  document.querySelector('.face-right').style.transform = `rotateY(90deg) translateZ(${tz}px)`;
+  document.querySelector('.face-left').style.transform = `rotateY(-90deg) translateZ(${tz}px)`;
+  document.querySelector('.face-top').style.transform = `rotateX(90deg) translateZ(${tz}px)`;
+  document.querySelector('.face-bottom').style.transform = `rotateX(-90deg) translateZ(${tz}px)`;
+});
+
+// ===== CALCULATORS =====
+let currentUnit = 'cm';
+function setUnit(u) {
+  currentUnit = u;
+  document.querySelectorAll('.unit-pill').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.unit-label').forEach(l => l.textContent = u);
+}
+
+function fmt(n) {
+  return Number.isInteger(n) ? n.toString() : n.toFixed(3).replace(/\.?0+$/,'');
+}
+
+function calcWuerfel() {
+  const a = parseFloat(document.getElementById('wuerfel-a').value);
+  const r = document.getElementById('result-wuerfel');
+  if(isNaN(a) || a <= 0) { r.textContent = '⚠ Bitte eine gültige Seitenlänge eingeben'; return; }
+  const v = a * a * a;
+  r.innerHTML = `V = ${a} · ${a} · ${a} = <strong>${fmt(v)} ${currentUnit}³</strong>`;
+  r.style.animation = 'none'; void r.offsetWidth; r.style.animation = null;
+}
+function calcQuader() {
+  const l = parseFloat(document.getElementById('quader-l').value);
+  const b = parseFloat(document.getElementById('quader-b').value);
+  const h = parseFloat(document.getElementById('quader-h').value);
+  const r = document.getElementById('result-quader');
+  if(isNaN(l)||isNaN(b)||isNaN(h)||l<=0||b<=0||h<=0) { r.textContent = '⚠ Bitte alle Maße eingeben'; return; }
+  const v = l * b * h;
+  r.innerHTML = `V = ${l} · ${b} · ${h} = <strong>${fmt(v)} ${currentUnit}³</strong>`;
+}
+function calcZylinder() {
+  const rad = parseFloat(document.getElementById('zyl-r').value);
+  const h = parseFloat(document.getElementById('zyl-h').value);
+  const r = document.getElementById('result-zylinder');
+  if(isNaN(rad)||isNaN(h)||rad<=0||h<=0) { r.textContent = '⚠ Bitte Radius und Höhe eingeben'; return; }
+  const v = Math.PI * rad * rad * h;
+  r.innerHTML = `V = π · ${rad}² · ${h} ≈ <strong>${v.toFixed(2)} ${currentUnit}³</strong>`;
+}
+function calcConvert() {
+  const val = parseFloat(document.getElementById('conv-val').value);
+  const from = document.getElementById('conv-from').value;
+  const to = document.getElementById('conv-to').value;
+  const r = document.getElementById('result-conv');
+  if(isNaN(val)||val<0) { r.textContent='⚠ Bitte einen Wert eingeben'; return; }
+  const toCm3 = {cm3:1, dm3:1000, m3:1000000};
+  const cm3 = val * toCm3[from];
+  const res = cm3 / toCm3[to];
+  const labels = {cm3:'cm³', dm3:'dm³ (Liter)', m3:'m³'};
+  r.innerHTML = `${fmt(val)} ${labels[from]} = <strong>${fmt(res)} ${labels[to]}</strong>`;
+}
+
+// ===== QUIZ =====
+let quizAnswers = {};
+let correctCount = 0;
+const feedbacks = {
+  q1: { correct: '✅ Richtig! V = a³ = a · a · a', wrong: '❌ Nicht ganz. Die Formel ist V = a · a · a = a³' },
+  q2: { correct: '✅ Super! 5 · 4 · 3 = 60 cm³', wrong: '❌ Probier es: 5 · 4 · 3 = 60 cm³' },
+  q3: { correct: '✅ Genau! 1 dm³ = 1 000 cm³ = 1 Liter', wrong: '❌ 1 dm³ = 1 000 cm³, weil 1 dm = 10 cm und 10³ = 1000' },
+  q4: { correct: '✅ Richtig! Volumen wird in cm³ gemessen', wrong: '❌ cm² ist für Flächen, cm ist für Längen. Volumen = cm³' },
+  q5: { correct: '✅ Toll! 5³ = 125, also a = 5 cm', wrong: '❌ a³ = 125 → a = ∛125 = 5 cm' },
+  q6: { correct: '✅ Perfekt! V = π · r² · h', wrong: '❌ Die richtige Formel ist V = π · r² · h' },
+  q7: { correct: '✅ Richtig! 1 Liter = 1 dm³ = 1 000 cm³', wrong: '❌ 1 Liter = 1 dm³ = 1 000 cm³' },
+  q8: { correct: '✅ Genau! Rauminhalt = Wie viel Platz ein Körper einnimmt', wrong: '❌ Rauminhalt (Volumen) = der Platz, den ein Körper einnimmt' }
+};
+
+function answer(btn, qid, result) {
+  if(quizAnswers[qid]) return;
+  quizAnswers[qid] = result;
+  const qEl = document.getElementById(qid);
+  qEl.querySelectorAll('.quiz-option').forEach(b => {
+    b.disabled = true;
+    if(b === btn) b.classList.add(result);
+    else if(result === 'wrong' && b.getAttribute('onclick').includes("'correct'")) b.classList.add('correct');
+  });
+  const fb = document.getElementById('fb-' + qid);
+  fb.textContent = feedbacks[qid][result];
+  fb.className = 'quiz-feedback show ' + result;
+  if(result === 'correct') correctCount++;
+  if(Object.keys(quizAnswers).length === 8) showScore();
+}
+
+function showScore() {
+  setTimeout(() => {
+    const scoreEl = document.getElementById('quiz-score');
+    scoreEl.classList.add('show');
+    scoreEl.scrollIntoView({behavior:'smooth', block:'center'});
+    const scoreNum = document.getElementById('score-num');
+    const scoreMsg = document.getElementById('score-msg');
+    const emoji = document.getElementById('score-emoji');
+    scoreNum.textContent = correctCount + '/8';
+    if(correctCount >= 7) { scoreMsg.textContent = 'Ausgezeichnet! Du bist ein Volumen-Profi! 🌟'; emoji.textContent = '🏆'; }
+    else if(correctCount >= 5) { scoreMsg.textContent = 'Gut gemacht! Noch ein bisschen üben! 💪'; emoji.textContent = '🎉'; }
+    else { scoreMsg.textContent = 'Noch mal versuchen – du schaffst das! 📚'; emoji.textContent = '🔄'; }
+  }, 500);
+}
+
+function resetQuiz() {
+  quizAnswers = {}; correctCount = 0;
+  document.getElementById('quiz-score').classList.remove('show');
+  document.querySelectorAll('.quiz-option').forEach(b => {
+    b.disabled = false; b.classList.remove('correct','wrong');
+  });
+  document.querySelectorAll('.quiz-feedback').forEach(f => {
+    f.classList.remove('show','correct','wrong'); f.textContent = '';
+  });
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ===== PROGRESS (Aufgaben) =====
+function updateProgress() {
+  const total = document.querySelectorAll('.task-check input').length;
+  const done = document.querySelectorAll('.task-check input:checked').length;
+  document.getElementById('progressBar').style.width = Math.max(80, (80 + done/total*20)) + '%';
+}
+</script>
+</body>
+</html>
